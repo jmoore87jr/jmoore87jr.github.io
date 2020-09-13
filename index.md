@@ -1,5 +1,5 @@
 ## NBA DFS
-	We all know the NBA is the only professional sports league worth paying attention to. We know that!! And we also know we can take a few dollars out of the 401k and light it on fire at draftkings.com. It’s easy. Kids, gambling is all around you! 
+	We all know the NBA is the only professional sports league worth paying attention to. We know that! And we also know we can take a few dollars out of the 401k and light it on fire at draftkings.com. It’s easy. Kids, gambling is all around you! 
 ![Image](https://imgur.com/RDZ5f55.jpg)
 
 	A few years ago I tried daily fantasy basketball, hoping to turn it into a side hustle to complement poker. I won a little bit, but I was spending hours per slate fine-tuning projections and looking at correlations and spending so much mental energy on it that I was stressed out all the time. I quit after about half a season of playing seriously. \ 
