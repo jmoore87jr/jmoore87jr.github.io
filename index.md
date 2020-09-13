@@ -3,13 +3,17 @@
 	
 ![Image](https://imgur.com/RDZ5f55.jpg)
 
-	A few years ago I tried daily fantasy basketball, hoping to turn it into a side hustle to complement poker. I won a little bit, but I was spending hours per slate fine-tuning projections and looking at correlations and spending so much mental energy on it that I was stressed out all the time. I quit after about half a season of playing seriously. \
+	A few years ago I tried daily fantasy basketball, hoping to turn it into a side hustle to complement poker. I won a little bit, but I was spending hours per slate fine-tuning projections and looking at correlations and spending so much mental energy on it that I was stressed out all the time. I quit after about half a season of playing seriously. /
++
 	
-	Fast forward to a couple months ago. The NBA, being the only smart and good league, puts their players in a bubble so they can give the fans the playoff basketball they need during COVID-19. I’m learning Python and focusing on data, and I realize I now have the tools I need to automate much of my beloved hobby. <br/>
+	Fast forward to a couple months ago. The NBA, being the only smart and good league, puts their players in a bubble so they can give the fans the playoff basketball they need during COVID-19. I’m learning Python and focusing on data, and I realize I now have the tools I need to automate much of my beloved hobby. /
++
 	
 	NBA DFS projections from pay sites are pretty decent these days, and since part of my goal is to spend as little time as possible on DFS, I decide to start by averaging projections from the top 3 sites rather than creating my own. It’s kind of annoying to scrape from sites that require credentials, each with different (sometimes difficult) URL paths and weird table formats. All of the sites have 1-click .csv downloads, so I find it easier to just bookmark them and download the projections every morning. \
++
 	
 	Here’s where the fun starts -- my first script has me input the URL of the template for my DraftKings slate and then transforms the projections I downloaded to fit the template. The second script uses the pydfs-lineup-optimizer (link) package to generate the 100 top scoring lineups for the slate. The beauty of using popular pay site projections is that I can  apply linear regression to the projections and lineup %’s to estimate ownership %’s for each player, because everyone else is using the same projections. My ownership projections aren’t bad -- just about as good as the best ones I find online -- and I already know of a couple more predictors that will improve them. \
++
 	
 	After this all I have to do is bulk upload my lineups to DraftKings and enter contests, right? Well, I could do that, but I wouldn’t win any money. Our goal is to maximize winnings, and in DFS tournaments entering the 100 top expected scoring lineups won’t get you there. I’ll go into detail in my next post.
 
