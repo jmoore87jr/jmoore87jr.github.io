@@ -34,7 +34,7 @@ Tenth place: $1,000 \
 255th: $20 \
 680th: $12.55 \
 1,437th: $8.85 \
-7,513th: $5.71 \
+7,513th: $5.71 
 
 Rake is a basement bargain at 15.9%. They really love us. The DFS sites have come up with an ingenious prize structure; players can 1-3x their buy-in often enough to keep shoveling money in while still keeping our big score dreams alive.
 
@@ -54,17 +54,17 @@ Additionally, differentiating your lineup by using low-owned players when possib
 
 You also lower the chance someone duplicates your lineup. Being “duped” is kind of a disaster, all else equal. Imagine a 10-man winner-take-all tournament with 8 unique lineups and 2 identical lineups, all of which have approximately the same point projections*. Each lineup has a 1/9 chance of winning. When the duplicate lineups win, they only win 5 units while everyone else wins 10. Here are the EV’s:
 
-L1: 0.56
-L1: 0.56
-L2: 1.11
-L3: 1.11
-L4: 1.11
-L5: 1.11
-L6: 1.11
-L7: 1.11
-L8: 1.11
-L9: 1.11
-------------
+L1: 0.56 \
+L1: 0.56 \
+L2: 1.11 \
+L3: 1.11 \
+L4: 1.11 \
+L5: 1.11 \
+L6: 1.11 \
+L7: 1.11 \
+L8: 1.11 \
+L9: 1.11 \
+------------ \
 Total: 10.0
 
 Notice that even in this dramatic example nobody is winning if rake is 15.6%. I believe the best you can do is 9-10% rake in the $100-$500 buy-in range, and the NFL $3,000 Luxury Box rake is 5.6%. 
