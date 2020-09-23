@@ -1,4 +1,4 @@
-## NBA DFS
+## NBA DFS - 9/13/20
 
 We all know the NBA is the only professional sports league worth paying attention to. We know that! And we also know we can take a few dollars out of the bank and light it on fire at draftkings.com. It’s easy! Kids, [gambling is all around you!](https://www.youtube.com/watch?v=4eHMgXlugIU) 
 	
@@ -15,7 +15,7 @@ Here’s where the fun starts -- my first script has me input the URL of the tem
 After this all I have to do is bulk upload my lineups to DraftKings and enter contests, right? Well, I could do that, but I wouldn’t win any money. Our goal is to maximize winnings, and in DFS tournaments entering the 100 top expected scoring lineups won’t get you there. I’ll go into detail in my next post.
 
 
-## NBA DFS - Part 2
+## NBA DFS - Part 2 - 9/23/20
 
 The big tournaments (GPPs) on DraftKings are extremely top-heavy. Check out this recent $4 NBA GPP:
 
