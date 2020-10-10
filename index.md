@@ -69,7 +69,7 @@ def main():
         logger.info(f"Waiting {wait_time}s...")
         time.sleep(wait_time)
 ```
-Here’s what’s happening… \
+Here’s what’s happening… 
 * Scrape the game lines from DraftKings 
 * Look for differences between the new lines and the previous lines 
 * If there are changes, update the .csv’s 
@@ -79,7 +79,7 @@ Voila!
 
 ![Image](https://i.imgur.com/IplaHyh.png)
 
-If you want to do about 100x more work and have the same tools as the pros... \
+If you want to do about 100x more work and have the same tools as the pros... 
 * Add other sites 
 * Add player/team/game props 
 * Add in-game bets 
@@ -87,8 +87,10 @@ If you want to do about 100x more work and have the same tools as the pros... \
 * Deploy as containers on a virtual machine 
 * Optional: Put it in a web app or desktop app 
 * Optional: Alerts on number thresholds 
-
-
+ 
+ \
+ \
+ \
 
 ## NBA DFS - Part 2 - 9/23/20
 
@@ -149,7 +151,9 @@ I’ll make more DFS posts in the future -- I still want to cover what types of 
 
 *In real life, the duplicated lineups will probably have slightly better projections, hence their popularity, but it won’t make up for the dupe effect.
 
-
+\
+\
+\
 
 ## NBA DFS - 9/13/20
 
