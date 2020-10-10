@@ -1,3 +1,95 @@
+## Web Scraping Bot for Online Sportsbooks - 10/10/20
+
+Get in loser we’re botting. 
+
+![Image](https://i.kym-cdn.com/entries/icons/facebook/000/014/008/o-TINA-FEY-BIRTHDAY-570.jpg)
+
+Today we’re making a bot that scrapes NFL game lines from DraftKings. You can find all the code [here.](https://github.com/jmoore87jr/sportsbook-scrapers) 
+
+To get the lines, we’re going to use Python packages ‘requests’ and ‘BeautifulSoup’ (BS). Requests will let us access the site and then BS will parse its html into a soup object. Everything BS does interacts with this soup object.
+
+```python
+# create soup
+r = requests.get("https://sportsbook.draftkings.com/leagues/football/3?category=game-lines&subcategory=game")
+src = r.content 
+soup = BeautifulSoup(src, 'lxml')
+```
+Note: lxml is a parser you can get with ‘pip3 install lxml’, but you can also leave it out.
+
+Now, to get the information we need, we have to inspect the html of the DraftKings page. You can right click anywhere on the page and click ‘Inspect’. It will look like this: 
+
+![Image](https://i.imgur.com/QXtHukO.png)
+
+Each day of games is stored in a separate table. Reading the html, we see that every table sits in a ```html <div class=’sportsbook-table__body’> </div>``` wrapper. Here’s how to get a list of each table as a soup object: 
+
+```python
+tables = soup.findAll('div', {'class': 'sportsbook-table__body'})
+```
+Reading the html some more, we see that each of the 4 columns (teams, spreads, totals, moneylines) were children of the parent tables. I split the tables into columns and then extracted the text I needed from each:
+
+```python
+# team names
+team_names = [ node.text for node in teams.findAll('span', {'class': 'event-cell__name'}) ]
+# spreads
+spread_nums = [ node.text for node in spreads.findAll('span', {'class': 'sportsbook-outcome-cell__line'}) ]
+# spread price
+spread_prices = [ node.text for node in spreads.findAll('span', {'class': 'sportsbook-odds american default-color'}) ]
+# totals
+total_nums = [ node.text for node in totals.findAll('span', {'class': 'sportsbook-outcome-cell__line'}) ]
+# totals price
+total_prices = [ node.text for node in totals.findAll('span', {'class': 'sportsbook-odds american default-color'}) ]
+# moneyline
+moneyline = [ node.text for node in moneylines.findAll('span', {'class': 'sportsbook-odds american default-color'}) ]
+```
+Based on what I’ve read, BeautifulSoup is by far the friendliest web scraping tool out there for Python. Watch a couple of YouTube tutorials, read the [docs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/), and try it out. 
+
+Then we simply turn our 6 lists into a pandas DataFrame and we’re ready to put some wheels on this thing. 
+
+Bots keep running until you tell them to stop (or upon a conditional), so we put a ‘while True’ loop in our main function.
+
+```python
+def main():
+    previous_df = pd.DataFrame()
+    while True:
+        # scrape
+        current_df = scrape_nfl_gamelines()
+        # report differences
+        diff = df_differences(previous_df, current_df)
+        logger.info(diff)
+        previous_df = current_df
+        # add to .csv if changes have been made
+        if not os.path.exists('dk_lines.csv'):
+            save_to_csv(current_df, 'dk_lines.csv')
+            logger.info("dk_lines.csv created.")
+        if isinstance(diff, pd.DataFrame):
+            save_to_csv(current_df, 'dk_lines.csv')
+            save_to_csv(diff, 'changes.csv')
+            logger.info("Changes saved.")
+        # sleep
+        logger.info(f"Waiting {wait_time}s...")
+        time.sleep(wait_time)
+```
+Here’s what’s happening… \
+* Scrape the game lines from DraftKings \
+* Look for differences between the new lines and the previous lines \
+* If there are changes, update the .csv’s \
+* Sleep for 30s and do it again
+
+Voila!
+
+![Image](https://i.imgur.com/IplaHyh.png)
+
+If you want to do about 100x more work and have the same tools as the pros... \
+* Add other sites \
+* Add player/team/game props \
+* Add in-game bets \
+* Put it all in a relational DB \
+* Deploy as containers on a virtual machine \
+* Optional: Put it in a web app or desktop app \
+* Optional: Alerts on number thresholds 
+
+
+
 ## NBA DFS - Part 2 - 9/23/20
 
 The big tournaments (GPPs) on DraftKings are extremely top-heavy. Check out this recent $4 NBA GPP:
