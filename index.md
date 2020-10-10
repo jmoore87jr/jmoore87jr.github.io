@@ -1,6 +1,4 @@
-## Web Scraping Bot for Online Sportsbooks - 10/10/20
-
-Get in loser we’re botting. 
+## Get in loser we're botting - 10/10/20
 
 ![Image](https://i.kym-cdn.com/entries/icons/facebook/000/014/008/o-TINA-FEY-BIRTHDAY-570.jpg)
 
