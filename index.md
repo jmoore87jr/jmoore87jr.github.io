@@ -20,7 +20,7 @@ Now, to get the information we need, we have to inspect the html of the DraftKin
 
 ![Image](https://i.imgur.com/QXtHukO.png)
 
-Each day of games is stored in a separate table. Reading the html, we see that every table sits in a ```html <div class=’sportsbook-table__body’> </div>``` wrapper. Here’s how to get a list of each table as a soup object: 
+Each day of games is stored in a separate table. Reading the html, we see that every table sits in a ```<div class=’sportsbook-table__body’> </div>``` wrapper. Here’s how to get a list of each table as a soup object: 
 
 ```python
 tables = soup.findAll('div', {'class': 'sportsbook-table__body'})
@@ -70,9 +70,9 @@ def main():
         time.sleep(wait_time)
 ```
 Here’s what’s happening… \
-* Scrape the game lines from DraftKings \
-* Look for differences between the new lines and the previous lines \
-* If there are changes, update the .csv’s \
+* Scrape the game lines from DraftKings 
+* Look for differences between the new lines and the previous lines 
+* If there are changes, update the .csv’s 
 * Sleep for 30s and do it again
 
 Voila!
@@ -80,12 +80,12 @@ Voila!
 ![Image](https://i.imgur.com/IplaHyh.png)
 
 If you want to do about 100x more work and have the same tools as the pros... \
-* Add other sites \
-* Add player/team/game props \
-* Add in-game bets \
-* Put it all in a relational DB \
-* Deploy as containers on a virtual machine \
-* Optional: Put it in a web app or desktop app \
+* Add other sites 
+* Add player/team/game props 
+* Add in-game bets 
+* Put it all in a relational DB 
+* Deploy as containers on a virtual machine 
+* Optional: Put it in a web app or desktop app 
 * Optional: Alerts on number thresholds 
 
 
