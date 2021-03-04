@@ -102,10 +102,10 @@ I don’t really know what to think about hook shots. They are almost as prevale
 
 
 
-Props \
+Props
 * Vucevic. The volume and consistency are there. He’s not playing with all-stars so it’s much tougher for him to get uncontested layups and dunks than the average big man. Nice offensive player
 
-Slops \
+Slops
 * Andre Drummond and Tristan Thompson, as always
 
 
