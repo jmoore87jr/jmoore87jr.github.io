@@ -69,7 +69,7 @@ Dunks and dunk assists \
 
 ![image](https://imgur.com/8tdsv73.jpg)
 
-Dunks are good. Guys like Rudy, Mitch Rob, and Thomas Bryant are always going to be near the top in eFG because many of their shots are dunks worth 1.8 points per attempt. If someone comes into the league and starts dunking 5 times per game it’s going to be a big deal. 
+Dunks are good. Guys like Rudy, Mitch Rob, and Thomas Bryant are always going to be near the top in eFG because many of their shots are dunks worth 1.8 points per attempt. 
 
 Props
 * The Showtime Golden State Warriors have a rookie in the top 10 (Wiseman) and the only non-big-man in the top 20 (Oubre), both feasting on the delicacies Draymond and Steph are serving up
