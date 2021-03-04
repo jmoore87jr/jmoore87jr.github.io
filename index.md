@@ -9,7 +9,7 @@ Skip to part 2 if you don't care about the programming part.
 I have Python scripts to…
 * Update my list of player-team pairs that played the current season (to account for trades and G-league contracts)
 * Scrape play-by-play data from basketball-reference.com into a database
-* Parse the play columns into a separate database in a SQL-friendly format
+* Parse the play columns into a separate database in a query friendly format
 * Generate a text summary of last night’s games
 
 Then every day at 8am cron runs a shell script that runs the Python scripts in sequential order:
