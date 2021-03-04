@@ -2,6 +2,8 @@
 
 I recently got my little NBA play-by-play data pipeline operational. It spits out some cool stats that you can’t find on free sites, and today I want to take a look at the leaders for various types of 2pt field goals this season. 
 
+Skip to part 2 if you don't care about the programming part.
+
 ### Pt. 1 - Small data engineering
 
 I have Python scripts to…
