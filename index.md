@@ -1,3 +1,143 @@
+## NBA data and 2-pointer analysis - 3/3/2021
+
+I recently got my little NBA play-by-play data pipeline operational. It spits out some cool stats that you can’t find on free sites, and today I want to take a look at the leaders for various types of 2pt field goals this season. 
+
+### Pt. 1 - Small data engineering
+
+I have Python scripts to…
+* Update my list of player-team pairs that played the current season (to account for trades and G-league contracts)
+* Scrape play-by-play data from basketball-reference.com into a database
+* Parse the play columns into a separate database in a SQL-friendly format
+* Generate a text summary of last night’s games
+
+Then every day at 8am cron runs a shell script that runs the Python scripts in sequential order:
+
+```shell
+#!usr/bin/bash
+
+# activate venv
+source ~/.virtualenvs/nbaenv/bin/activate
+
+scripts=(~/NBAdraft/save_to_db/get_players.py \
+~/NBAdraft/save_to_db/pbp_yesterday.py \
+~/NBAdraft/save_to_db/parse_plays.py \
+~/NBAdraft/save_to_db/summary.py)
+
+exit_status=$?
+date=$(date)
+
+# run scripts sequentially, exiting if one fails
+for s in ${scripts[*]}; do
+        python3 $s
+        if [ "${exit_status}" -ne 0 ]; then
+                ( echo "$date -- $s failed"; echo "" ) >> ~/tmp/nba_status.txt
+                echo "exit ${exit_status}"
+        fi
+done
+
+# copy parsed db to windows desktop
+cp NBAdraft/save_to_db/nba_parsed.db /mnt/c/Users/john/Desktop
+
+( echo "$date -- script successful"; echo "" ) >> ~/NBAdraft/save_to_db/daily-cron-status.txt
+```
+
+The plays come in sentences like
+> M. Wagner makes 2-pt jump shot from 9 ft (assist by R. Westbrook)
+
+so we have to split these into columns that make sense, then replace the first initial with the full name so we don’t accidentally pad the stats of the Curry’s and Ball’s of the world. Here are the new columns:
+
+![image](https://imgur.com/fqK6Yre.jpg)
+
+And this is what the text summary looks like: 
+![image](https://imgur.com/RVWim9t.jpg)
+
+So yeah, every day I wake up and all this stuff has already happened. Pretty cool; all the code is on github. In the future I’ll add some other tables to this database like box stats, advanced stats, physical stats, college, etc, which will enable some fun joins. 
+
+
+### Part 2 - NBA 2-pt leaders
+
+Last night I watched the Phoenix Suns take care of the AD-less Lakers. I drastically underrated them pre-season, despite being right about most of the individual advanced metrics (minus Mikal Bridges who became probably the best 3 and D wing in the league this year). 
+
+Advanced stats don’t love Devin Booker. But when you watch the Suns you realize their plan is to hunt for good shots, then put the ball in his hands with 6 seconds left if they don’t find anything. He gets left holding the entire bag of tough 2’s because he’s a walking bucket. Nice system for the team’s offense, which is currently 8th in efficiency, but bad for Booker’s personal advanced metrics.
+
+So while long 2’s are the worst shot in basketball, they have their place. It’s not as simple as “long 2’s lol” (unless your name is Russell Westbrook). With that let’s get to the good stuff.
+
+Dunks and dunk assists \
+![image](https://imgur.com/UNt49uX.jpg)
+
+![image](https://imgur.com/8tdsv73.jpg)
+
+Dunks are good. Guys like Rudy, Mitch Rob, and Thomas Bryant are always going to be near the top in eFG because many of their shots are dunks worth 1.8 points per attempt. If someone comes into the league and starts dunking 5 times per game it’s going to be a big deal. 
+
+Props
+* The Showtime Golden State Warriors have a rookie in the top 10 (Wiseman) and the only non-big-man in the top 20 (Oubre), both feasting on the delicacies Draymond and Steph are serving up
+* Our Time Lord and Savior Robert Williams III cracks the top 20, inexcusably playing only 16 minutes behind the corpse of Tristan Thompson
+
+
+Slops
+* DeAndre Ayton plays 32 minutes a night with Chris Paul, Devin Booker, and two good corner 3 threats, and he isn’t top 20 in dunks or layups. Absurd. He usually rolls to the free throw line, stops, and puts his hand up like he wants to be fed.
+
+Layups \
+![image](https://imgur.com/hm59xch.jpg)
+
+Layups are the other desirable type of 2-pointer. Guys miss a lot of layups, but if you can finish low-mid 50%s or higher, you’re doing fine work from an efficiency standpoint. Lots of fouls come on layup attempts as well.
+
+Props
+* Zion is doing peak Shaq things around the rim only 57 games into his career. He leads the league in shots at the rim by a mile (24 vs. peak Shaq’s 26), and his TS% is already better than peak Shaq (64% vs. 58%) in part due to his solid free throw shooting
+* Bradley Beal showing why he’s led the league in scoring wire to wire so far. We know he can shoot, but he’s also the best guard at both getting to the rim and finishing this year
+
+Slops
+* Andre Drummond has always had piss poor efficiency for a big man, but he’s found a new gear this year. He’s taking more shots than ever and achieving career low efficiency
+
+Here are the guys who take the most dunks + layups and their respective rim field goal %s
+
+![image](https://imgur.com/juUdS6h.jpg)
+
+Hook shots \
+![image](https://imgur.com/vceLDwE.jpg)
+
+I don’t really know what to think about hook shots. They are almost as prevalent as dunks, but the large variation in fg% suggests some guys are good at them and some are not. Sabonis is a footwork king around the basket and his layup fg% reflects that, but his hook game looks dreadful this year. I’ll take a look at his hook shots from years past another time.
+
+
+
+Props \
+* Vucevic. The volume and consistency are there. He’s not playing with all-stars so it’s much tougher for him to get uncontested layups and dunks than the average big man. Nice offensive player
+
+Slops \
+* Andre Drummond and Tristan Thompson, as always
+
+
+Short-mid 2’s (under 14ft, not counting hook shots, layups, or dunks) \
+
+![image](https://imgur.com/qRq83Zq.jpg)
+
+This category includes floaters and short jump shots. I wish I could separate out floaters because they’re a huge chunk of these short-mid 2’s. You must be hitting these at 50-55%+ for them to be a big part of your game.
+
+Props
+* Guys whose names start with K
+
+Slops
+* Poor DeMar DeRozan held Toronto back for years by using possessions on his 44% midrange jumper
+* Trae takes a lot of floaters off the pick and roll, and it does not look like they’re going in enough. His 2P% is usually sub-50% overall, including layups. I’d like to see Trae pass on more of these and go to Gallinari or Collins late in the shot clock. He’s probably just too small to ever be a bigtime late shot clock guy inside the 3pt line.
+
+Long 2’s (over 14ft) \
+
+![image](https://imgur.com/7R60f2a.jpg)
+
+The dreaded long 2, the worst theoretical shot in basketball. Even the most talented bucket-getters usually can’t do better than 1.1 points per attempt on these, which is why they should be avoided until late in the shot clock.
+
+Props
+* I’m gonna throw Bradley Beal another prop here. What is he supposed to do, pass to Russ?
+* Jokic is just an alien. Nobody should have 65% true shooting while being top 10 in hook shots and top 15 in long 2’s.
+
+Slops
+* Jayson Tatum’s shot selection is worse than ever, and he’s not hitting. This is blasphemy, but it looks like Brad needs to get his head out of his ass with this team’s offense. I would like to see them play a Utah Jazz offense with Kemba, Smart, Brown, Tatum, Williams. If they find that, I think they will be a problem in the playoffs
+
+
+So that’s it. This has been fun to write -- please tell me what you think on Twitter!
+
+\
+
 ## Get in loser we're botting - 10/10/20
 
 ![Image](https://i.kym-cdn.com/entries/icons/facebook/000/014/008/o-TINA-FEY-BIRTHDAY-570.jpg)
