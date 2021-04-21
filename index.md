@@ -38,14 +38,17 @@ This is just calculating the area under the curve at x. You can use the builtin 
 
 ### Step 5: Calculate the change in win percentage for each point of total
 
-This is the delta column above. If we assume the market total is close to the mean score of the game, we can just use the deltas close to the mean since that’s where we’ll always be betting.
+This is the delta column above. 
+
+The beauty here is that since we assume the book's total is accurate, we don't really have to worry about nonlinearity -- we will always be betting close to the mean.
 
 
-Each point of the total is worth about 2% win probability. We need 2.38% for a profitable bet at -110, so we need a 1.5 point edge on the total to place a +EV bet.
+So each point of the total is worth about 2% win probability. We need 2.38% for a profitable bet at -110, so we need a 1.5 point edge on the total to place a +EV bet.
 
 Happy punting 🏈
 
-
+\
+\
 
 
 ## NBA data and 2-pointer analysis - 3/3/2021
