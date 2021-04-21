@@ -17,7 +17,7 @@ Make a histogram of the total points. If it looks like the IQ meme you’re good
 
 ![image](https://imgur.com/HAnUdDo.jpg)
 
-![image](https://imgur.com/AtgxkL3)
+![image](https://imgur.com/AtgxkL3.jpg)
 
 Nice.
 
@@ -34,7 +34,7 @@ Standard deviation: 20.11
 
 This is just calculating the area under the curve at x. You can use the builtin NORMINV function for this. For NBA, the probability that the total will be under 220 for a game with a 223.43 mean score is 43.23%.  
 
-![image](https://imgur.com/hXmkBBh)
+![image](https://imgur.com/hXmkBBh.jpg)
 
 ### Step 5: Calculate the change in win percentage for each point of total
 
