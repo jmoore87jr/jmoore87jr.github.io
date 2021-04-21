@@ -1,3 +1,53 @@
+## Betting Totals - 4/21/2021
+
+When you bet sports the book takes a vig. Usually the bettor has to lay -110 (betting 11 to win 10), which equates to a 52.38% win probability needed to break even. I found `spread` -> `moneyline` conversions with a Google search, but I didn’t see any public tables for `total` -> `win probability`.
+
+It’s easy to calculate for any sport if we can assume that...
+
+1. The total (total points scored in each game) is normally distributed
+2. The book’s total is close to the mean score of the game (i.e. the book’s number is sharp)
+
+### Step 1: Get game results
+
+I wrote a Python script to download all NBA games from the ‘19-’20 and ‘20-’21 seasons on basketball-reference.com, almost 2000 games as of April 2021. Alternatively, you can just copy/paste the tables into a spreadsheet.
+
+### Step 2: Examine the data
+
+Make a histogram of the total points. If it looks like the IQ meme you’re good to go. If it doesn’t, then you don’t have a normal distribution. 
+
+![image](https://imgur.com/HAnUdDo.jpg)
+
+![image](https://imgur.com/AtgxkL3)
+
+Nice.
+
+If you don’t want to figure out what kind of distribution you have, you can still get a pretty accurate result as long as you have enough games. Just do a `=COUNTIF(totals, “<x”)` for every x around the mean and then move to step 4.
+
+### Step 3: Calculate the mean and standard deviation
+
+Use the builtin spreadsheet functions to do this. For NBA games the past 2 seasons, we have…
+
+Mean: 223.43
+Standard deviation: 20.11
+
+### Step 4: Calculate the P(score < x) for numbers close to the mean
+
+This is just calculating the area under the curve at x. You can use the builtin NORMINV function for this. For NBA, the probability that the total will be under 220 for a game with a 223.43 mean score is 43.23%.  
+
+![image](https://imgur.com/hXmkBBh)
+
+### Step 5: Calculate the change in win percentage for each point of total
+
+This is the delta column above. If we assume the market total is close to the mean score of the game, we can just use the deltas close to the mean since that’s where we’ll always be betting.
+
+
+Each point of the total is worth about 2% win probability. We need 2.38% for a profitable bet at -110, so we need a 1.5 point edge on the total to place a +EV bet.
+
+Happy punting 🏈
+
+
+
+
 ## NBA data and 2-pointer analysis - 3/3/2021
 
 I recently got my little NBA play-by-play data pipeline operational. It spits out some cool stats that you can’t find on free sites, and today I want to take a look at the leaders for various types of 2pt field goals this season. 
